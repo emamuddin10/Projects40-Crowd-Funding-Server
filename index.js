@@ -56,6 +56,7 @@ async function run() {
       const result = await fundingDBCollection.insertOne(data);
       res.send(result);
     });
+    
 
     // update campaign
     app.patch('/update/:id',async(req,res)=>{
@@ -65,6 +66,7 @@ async function run() {
       
     }) 
 
+
     //  delete for my campaign
      app.delete("/delete-campaign/:id", async (req, res) => {
       const paramsId = req.params.id;
@@ -72,6 +74,8 @@ async function run() {
       const result = await fundingDBCollection.deleteOne(query);
       res.send(result);
     });
+
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
