@@ -34,12 +34,12 @@ async function run() {
    
 
     // get for details 
-    app.get('/details-campaign/:id', async(req,res)=>{
-      const paramId = req.params.id 
-      const query = {_id: new ObjectId(paramId)}
-      const result = await fundingDBCollection.findOne(query)
-      res.send(result)
-    })
+    // app.get('/details-campaign/:id', async(req,res)=>{
+    //   const paramId = req.params.id 
+    //   const query = {_id: new ObjectId(paramId)}
+    //   const result = await fundingDBCollection.findOne(query)
+    //   res.send(result)
+    // })
 
     // get for read that data
     app.get('/allCampaign',async(req,res)=>{
