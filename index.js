@@ -28,15 +28,19 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     const fundingDBCollection = client.db('fundingDB').collection('funding')
-    // get for details 
 
-    
+
+    // get api for my campaign 
+   
+
+    // get for details 
     app.get('/details-campaign/:id', async(req,res)=>{
       const paramId = req.params.id 
       const query = {_id: new ObjectId(paramId)}
       const result = await fundingDBCollection.findOne(query)
       res.send(result)
     })
+
     // get for read that data
     app.get('/allCampaign',async(req,res)=>{
       const result =await fundingDBCollection.find().toArray()
