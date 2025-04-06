@@ -5,7 +5,9 @@ const port = process.env.PORT || 5000;
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5173"]
+}));
 app.use(express.json());
 // crowdFunding
 // F9TfQ7LsfKJ4Iunk
@@ -56,14 +58,28 @@ async function run() {
       const result = await fundingDBCollection.insertOne(data);
       res.send(result);
     });
-    
+
 
     // update campaign
     app.patch('/update/:id',async(req,res)=>{
       const paramsId = req.params.id 
       const filter = {_id: new ObjectId(paramsId)}
       const options = { upsert: true };
-      
+      const campaign = req.body;
+      const updateData = {
+        $set: {
+          name:campaign.name,
+          description: campaign.description,
+          type: campaign.type,
+          photo: campaign.photo,
+          userName: campaign.userName,
+          email: campaign.email,
+          amount: campaign.amount
+        }
+      }
+
+      const result = await fundingDBCollection.updateOne(filter,updateData,options)
+      res.send(result)
     }) 
 
 
