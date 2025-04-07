@@ -29,6 +29,7 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     const fundingDBCollection = client.db("fundingDB").collection("funding");
+    const donationCollection = client.db("fundingDB").collection("donation");
 
     // get api for my campaign
 
@@ -90,6 +91,15 @@ async function run() {
       const result = await fundingDBCollection.deleteOne(query);
       res.send(result);
     });
+
+
+    // donation 
+    app.post('/add-donation',async(req,res)=>{
+      const donationData = req.body;
+      console.log(donationData)
+      const result = await donationCollection.insertOne(donationData)
+      res.send(result)
+    })
 
 
     // Send a ping to confirm a successful connection
