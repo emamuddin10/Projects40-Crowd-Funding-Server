@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+require('dotenv').config()
 const port = process.env.PORT || 5000;
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
@@ -9,11 +10,9 @@ app.use(cors({
   origin: ["http://localhost:5173"]
 }));
 app.use(express.json());
-// crowdFunding
-// F9TfQ7LsfKJ4Iunk
 
 const uri =
-  "mongodb+srv://crowdFunding:F9TfQ7LsfKJ4Iunk@cluster0.v28xn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  `mongodb+srv://${process.env.userDB}:${process.env.userPass}@cluster0.v28xn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
