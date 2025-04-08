@@ -7,7 +7,7 @@ const port = process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 app.use(cors({
-  origin: ["http://localhost:5173"]
+  origin: ["http://localhost:5173","https://velvety-medovik-b4caa9.netlify.app"]
 }));
 app.use(express.json());
 
@@ -54,7 +54,7 @@ async function run() {
     // post
     app.post("/addCampaign", async (req, res) => {
       const data = req.body;
-      console.log(data);
+      // console.log(data);
       const result = await fundingDBCollection.insertOne(data);
       res.send(result);
     });
@@ -95,7 +95,7 @@ async function run() {
     // donation 
     app.post('/add-donation',async(req,res)=>{
       const donationData = req.body;
-      console.log(donationData)
+      // console.log(donationData)
       const result = await donationCollection.insertOne(donationData)
       res.send(result)
     })
@@ -104,7 +104,7 @@ async function run() {
     // get donation data for specefic user 
     app.get('/myDonation/:email',async(req,res)=>{
       const email = req.params.email;
-      console.log(email)
+      // console.log(email)
       const query = {userEmail: email}
       const result = await donationCollection.find(query).toArray()
       res.send(result)
