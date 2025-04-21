@@ -2,7 +2,7 @@
 require('dotenv').config()
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-console.log("user",process.env.userDB)
+// console.log("user",process.env.userDB)
 
 const uri = `mongodb+srv://${process.env.userDB}:${process.env.userPass}@cluster0.v28xn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 

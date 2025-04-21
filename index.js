@@ -2,6 +2,7 @@ const express = require("express");
 const connectToDatabase = require('./db');
 const app = express();
 const cors = require("cors");
+const { ObjectId } = require("mongodb");
 const port = process.env.PORT || 5000;
 
 
@@ -31,7 +32,7 @@ async function run() {
     // get for details
     app.get("/details-campaign/:id", async (req, res) => {
       const paramId = req.params.id;
-      const query = { _id: new ObjectId(paramId) };
+      const query = {_id: new ObjectId(paramId) };
       const result = await fundingDBCollection.findOne(query);
       res.send(result);
     });
