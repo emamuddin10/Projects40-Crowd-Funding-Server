@@ -65,7 +65,8 @@ async function run() {
           photo: campaign.photo,
           userName: campaign.userName,
           email: campaign.email,
-          amount: campaign.amount
+          amount: campaign.amount,
+          date: campaign.date
         }
       }
 
